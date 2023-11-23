@@ -7,7 +7,7 @@
 
 Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop. This system is designed to enhance your experience of playing [Fabula Ultima](https://www.needgames.it/fabula-ultima-en/) by [Need Games](https://www.needgames.it/). Please note that licensed Fabula Ultima content is not provided with this system. We adhere RoosterEma's guidelines and strive to ensure that the core book and supplements remain essential to your experience.
 
-**Disclaimer:** This system is currently in an experimental phase. We recommend refraining from using it for your games until further notice.
+**Disclaimer:** This system is currently in it's testing phase. We recommend backing up your world before trying it.
 
 ## Installation
 
@@ -15,13 +15,13 @@ Welcome to the Unofficial Fabula Ultima System for the Foundry Virtual Tabletop.
 
 1. Open the Foundry Setup screen and navigate to the Game Systems tab.
 2. Click the "Install System" button.
-3. Use the following Manifest URL: `https://raw.githubusercontent.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/main/system.json`
+3. Use the following Manifest URL: `https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases/latest/download/system.json`
 4. Click "Install."
 
 ### Manual Installation
 
 1. Visit the [Release](https://github.com/League-of-Fabulous-Developers/FoundryVTT-Fabula-Ultima/releases "‌") page to find your desired version.
-2. Download the `fabulaultima-release-x.x.x.zip` file for your chosen version.
+2. Download the `fabulaultima.zip` file for your chosen version.
 3. Unzip the downloaded file to your FoundryVTT Data systems folder. (For more details, refer to the [FoundryVTT Configuration Guide](https://foundryvtt.com/article/configuration/#where-user-data "‌")).
 4. [Mandatory] Ensure that you have the `socketLib` module installed.
 5. Restart FoundryVTT if necessary.
@@ -42,7 +42,8 @@ Major thanks to the following contributors:
 - **Design and CSS Improvements**: Various upgrades and CSS design improvements by [\@serpuss/quake](https://github.com/serpuss).
 - **Current Maintainer**: [spyrella](https://github.com/spyrella) - for ongoing updates to the system.
 
-A few assets were used from the following projects:
+A few assets/code were used from the following projects:
 
+- **fultimator**: [fultimator](https://github.com/codeclysm/fultimator) by codeclysm, specifically project/ritual/sp counter code, licensed under the [MIT License](https://github.com/codeclysm/fultimator/blob/main/LICENSE.md)
 - **animate.css**: [animate.css](https://animate.style/) by Daniel Eden, licensed under the [Hippocratic License](https://github.com/animate-css/animate.css/blob/main/LICENSE-HIPPOCRATIC).
 - **RPG-Awesome**: [RPG-Awesome](https://nagoshiashumari.github.io/Rpg-Awesome/) by Daniela Howe and Ivan Montiel, licensed under the [BSD 2-Clause "Simplified" License](https://github.com/NagoshiAshumari/Rpg-Awesome/blob/master/LICENSE).

@@ -10,7 +10,7 @@ export class FUActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ['fabulaultima', 'sheet', 'actor'],
 			template: 'systems/fabulaultima/templates/actor/actor-character-sheet.html',
-			width: 600,
+			width: 620,
 			height: 1150,
 			tabs: [
 				{
@@ -50,10 +50,18 @@ export class FUActorSheet extends ActorSheet {
 		this._expanded = new Set();
 		// Prepare character data and items.
 		if (actorData.type == 'character') {
+			const tlTracker = this.actor.getTLTracker();
+
+			// Add tlTracker to the context
+			context.tlTracker = tlTracker;
 		}
 
 		// Prepare NPC data and items.
 		if (actorData.type == 'npc') {
+			const spTracker = this.actor.getSPTracker();
+
+			// Add spTracker to the context
+			context.spTracker = spTracker;
 		}
 
 		// Add roll data for TinyMCE editors.
@@ -76,9 +84,25 @@ export class FUActorSheet extends ActorSheet {
 	 * @return {undefined}
 	 */
 	_prepareCharacterData(context) {
+		if (!context || !context.system || !context.system.attributes || !context.system.affinities) {
+			console.error('Invalid context or context.system');
+			return;
+		}
+
 		// Handle ability scores.
 		for (let [k, v] of Object.entries(context.system.attributes)) {
 			v.label = game.i18n.localize(CONFIG.FU.attributes[k]) ?? k;
+			v.abbr = game.i18n.localize(CONFIG.FU.attributeAbbreviations[k]) ?? k;
+		}
+
+		// Handle affinity
+		for (let [k, v] of Object.entries(context.system.affinities)) {
+			v.label = game.i18n.localize(CONFIG.FU.affinities[k]) ?? k;
+			v.affTypeBase = game.i18n.localize(CONFIG.FU.affType[v.base]) ?? v.base;
+			v.affTypeBaseAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.base]) ?? v.base;
+			v.affTypeCurr = game.i18n.localize(CONFIG.FU.affType[v.current]) ?? v.current;
+			v.affTypeCurrAbbr = game.i18n.localize(CONFIG.FU.affTypeAbbr[v.current]) ?? v.current;
+			v.icon = CONFIG.FU.affIcon[k];
 		}
 	}
 
@@ -420,8 +444,10 @@ export class FUActorSheet extends ActorSheet {
 		// 	const isRightClick = ev.type === 'contextmenu';
 		// 	console.log('Rightclick: ', isRightClick);
 
-		// 	let currentValue = parseInt(spanElement.text()) || 0;
+		// 	// Convert the span element text to a number
+		// 	let currentValue = Number(spanElement.text()) || 0;
 
+		// 	// Increment or decrement the current value by 1
 		// 	if (isRightClick) {
 		// 		currentValue -= 1;
 		// 	} else {
@@ -435,15 +461,25 @@ export class FUActorSheet extends ActorSheet {
 		// 	// Now, you can update the actual data of the item in Foundry VTT
 		// 	// For example, you can use Foundry's updateObject function
 		// 	const updateObject = {
-		// 		_id: itemId,
+		// 		id: itemId,
 		// 		data: {
 		// 			// Update the property you want to change (e.g., value)
-		// 			value: currentValue,
+		// 			[targetResource]: currentValue,
 		// 		},
 		// 	};
 		// 	console.log('Update Object: ', updateObject);
-		// 	console.log(game.user._id);
-		// 	console.log(game.actors.get(actorID));
+
+		// 	// Retrieve the item using the item ID
+		// 	console.log('Item ID: ', itemId);
+		// 	let item = game.items.get(itemId);
+
+		// 	// Check if the item is found before attempting to update
+		// 	if (item) {
+		// 		// Update the item with the new value of the target resource
+		// 		item.update(updateObject);
+		// 	} else {
+		// 		console.error('Item not found with ID: ', itemId);
+		// 	}
 		// });
 
 		// Active Effect management

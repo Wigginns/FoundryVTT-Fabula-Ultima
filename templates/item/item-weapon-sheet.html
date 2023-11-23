@@ -27,6 +27,7 @@
 				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.HRZeroStatus'}}</span><input type="checkbox" name="system.rollInfo.useWeapon.hrZero.value" {{ checked system.rollInfo.useWeapon.hrZero.value }} /> </label>
 				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.IsMartial'}}</span><input type="checkbox" name="system.isMartial.value" {{ checked system.isMartial.value }} /> </label>
 				<label class="checkbox resource-label-sm"> <span>{{localize 'FU.CustomWeapon'}}</span><input type="checkbox" name="system.isCustomWeapon.value" {{ checked system.isCustomWeapon.value }} /> </label>
+				<label class="checkbox resource-label-sm" data-tooltip="{{localize 'FU.TitleCardInfo'}}"> <span>{{localize 'FU.TitleCardStatus'}}</span><input type="checkbox" name="system.showTitleCard.value" {{ checked system.showTitleCard.value }} /> </label>
 			</div>
 
 			<section class="flex1 flex-group-center desc">
@@ -54,14 +55,19 @@
 					</div>
 					<div class="resource-content flexcol flex-group-center">
 						<label for="system.hands.value" class="resource-label-m flexlarge align-left">{{localize 'FU.Hand'}}</label>
-						<!--TODO: Auto select two-handed and disable field if isCustomWeapon == true-->
-						<select value="{{ system.hands.value }}" name="system.hands.value" class="resource-inputs select-dropdown-m">
-							{{#select system.hands.value}}
-							<option value="one-handed">One-Handed</option>
+						{{#if system.isCustomWeapon.value}}
+						  <select value="two-handed" name="system.hands.value" class="resource-inputs select-dropdown-m" disabled>
 							<option value="two-handed">Two-Handed</option>
+						  </select>
+						{{else}}
+						  <select value="{{ system.hands.value }}" name="system.hands.value" class="resource-inputs select-dropdown-m">
+							{{#select system.hands.value}}
+							  <option value="one-handed">One-Handed</option>
+							  <option value="two-handed">Two-Handed</option>
 							{{/select}}
-						</select>
-					</div>
+						  </select>
+						{{/if}}
+					  </div>
 					<div class="resource-content flexcol flex-group-center">
 						<label for="system.type.value" class="resource-label-m flexlarge align-left">{{localize 'FU.ItemType'}}</label>
 						<select value="{{ system.type.value }}" name="system.type.value" class="resource-inputs select-dropdown-m">

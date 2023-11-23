@@ -1,3 +1,8 @@
+<header class="items-main-header">
+	<span class="items-main">
+		<label class="items-label">{{localize "FU.Favorite"}}</label>
+	</span>
+</header>
 <ol class="items-list">
 	<li class="item flexrow items-header">
 		<div class="item-name">{{localize 'FU.Name'}}</div>
@@ -47,12 +52,26 @@
 				<h4 class="click-item">
 					<i class="fas fa-chevron-down" style="display: none"></i>
 					<i class="fas fa-chevron-up" style="display: none"></i>
-					{{ item.name }} {{#if item.isMartial.value}}
+					{{ item.name }} {{#if item.system.isMartial.value}}
 					<span class="is-martial">✦</span>
 					{{/if}}
+					{{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "mainHand"))}}
+						<span class="icon-letter" data-tooltip="{{localize 'FU.MainHand'}}">M</span>
+					{{/if}} 
+					{{#if (and item.system.isEquipped.value (eq item.system.isEquipped.slot "offHand"))}}
+						<span class="icon-letter" data-tooltip="{{localize 'FU.OffHand'}}">O</span>
+					{{/if}} 
 				</h4>
 			</div>
-			<div class="item-equipped">{{#if (eq item.type "miscAbility") }}{{capitalize item.system.subtype.value }}{{else }}{{capitalize item.type }}{{/if}}</div>
+			<div class="item-equipped">
+				{{#if (eq item.type "heroic") }}
+					{{capitalize item.type}} {{capitalize item.system.subtype.value}}
+				{{else if (eq item.type "miscAbility") }}
+					{{capitalize item.system.subtype.value}}
+				{{else }}
+					{{capitalize item.type}}
+				{{/if}}
+			</div>			
 			{{> "systems/fabulaultima/templates/actor/parts/actor-control.html" item=item}}
 		</div>
 		<span>{{ item.quality.value }}</span>

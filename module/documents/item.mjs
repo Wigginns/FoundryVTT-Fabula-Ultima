@@ -67,7 +67,7 @@ export class FUItem extends Item {
 		return {
 			attackString,
 			damageString,
-			qualityString: `【${qualityString}】`,
+			qualityString: `${qualityString}`,
 		};
 	}
 
@@ -95,7 +95,7 @@ export class FUItem extends Item {
 		}
 
 		return {
-			qualityString: `【${qualityString}】`,
+			qualityString: `${qualityString}`,
 		};
 	}
 
@@ -160,8 +160,13 @@ export class FUItem extends Item {
 
 		const qualityString = [capitalizeFirst(this.system?.class?.value), weaponString, attackString, damageString].filter(Boolean).join(' ⬩ ');
 
+		const starCurrent = this.system?.level?.value;
+		const starMax = this.system?.level?.max;
+
 		return {
 			qualityString: `${qualityString}`,
+			starCurrent: `${starCurrent}`,
+			starMax: `${starMax}`,
 		};
 	}
 
@@ -544,10 +549,7 @@ export class FUItem extends Item {
 			// Prepare the content by filtering and joining various parts.
 			const content = [qualityString, spellString, ritualString, projectString, heroicString, zeroString, chatdesc, attackString].filter((part) => part).join('');
 
-			if (['spell'].includes(type)) {
-				socketlib.system.executeForEveryone('cast', name);
-			}
-			if (['consumable', 'skill', 'weapon'].includes(type) || system.showTitleCard?.value) {
+			if (['consumable', 'skill'].includes(type) || system.showTitleCard?.value) {
 				socketlib.system.executeForEveryone('use', name);
 			}
 

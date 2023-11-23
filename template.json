@@ -9,32 +9,29 @@
 					"mp": { "value": 10, "min": 0, "max": 10, "bonus": 0 },
 					"rp1": { "name": "", "value": 0 },
 					"rp2": { "name": "", "value": 0 },
-					"rp3": { "name": "", "value": 0 },
-					"affinity": {
-						"phys": 1,
-						"air": 1,
-						"bolt": 1,
-						"dark": 1,
-						"earth": 1,
-						"fire": 1,
-						"ice": 1,
-						"light": 1,
-						"poison": 1
-					}
+					"rp3": { "name": "", "value": 0 }
+				},
+				"affinities": {
+					"phys": { "base": 0, "current": 0, "bonus": 0 },
+					"air": { "base": 0, "current": 0, "bonus": 0 },
+					"bolt": { "base": 0, "current": 0, "bonus": 0 },
+					"dark": { "base": 0, "current": 0, "bonus": 0 },
+					"earth": { "base": 0, "current": 0, "bonus": 0 },
+					"fire": { "base": 0, "current": 0, "bonus": 0 },
+					"ice": { "base": 0, "current": 0, "bonus": 0 },
+					"light": { "base": 0, "current": 0, "bonus": 0 },
+					"poison": { "base": 0, "current": 0, "bonus": 0 }
 				},
 				"attributes": {
-					"dex": { "base": 6, "current": 6 },
-					"ins": { "base": 6, "current": 6 },
-					"mig": { "base": 6, "current": 6 },
-					"wlp": { "base": 6, "current": 6 }
+					"dex": { "base": 6, "current": 6, "bonus": 0 },
+					"ins": { "base": 6, "current": 6, "bonus": 0 },
+					"mig": { "base": 6, "current": 6, "bonus": 0 },
+					"wlp": { "base": 6, "current": 6, "bonus": 0 }
 				},
 				"derived": {
 					"init": { "value": 0, "bonus": 0 },
 					"def": { "value": 0, "bonus": 0 },
-					"mdef": { "value": 0, "bonus": 0 },
-					"skillmax": { "value": 0, "bonus": 0 },
-					"classmax": { "value": 0, "bonus": 0 },
-					"heroicmax": { "value": 0, "bonus": 0 }
+					"mdef": { "value": 0, "bonus": 0 }
 				},
 				"castingAttributes": {
 					"primary": { "value": "ins" },
@@ -45,7 +42,7 @@
 		"character": {
 			"templates": ["base"],
 			"resources": {
-				"ip": { "value": 6, "min": 0, "max": 6 },
+				"ip": { "value": 6, "min": 0, "max": 6, "bonus": 0 },
 				"fp": { "value": 3 },
 				"bonds": [
 					{
@@ -133,19 +130,19 @@
 			"showTitleCard": { "showTitleCard": { "value": false } }
 		},
 		"weapon": {
-			"templates": ["base", "item", "equippable", "hasBehavior", "weaponize"],
+			"templates": ["base", "item", "equippable", "weaponize", "hasBehavior", "showTitleCard"],
 			"isCustomWeapon": { "value": false }
 		},
 		"shield": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "weaponize"],
+			"templates": ["base", "item", "equippable", "defensive", "weaponize", "hasBehavior", "showTitleCard"],
 			"isDualShield": { "value": false },
 			"category": { "value": "brawling" }
 		},
 		"armor": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
 		},
 		"accessory": {
-			"templates": ["base", "item", "equippable", "defensive", "hasBehavior"]
+			"templates": ["base", "item", "equippable", "defensive", "hasBehavior", "showTitleCard"]
 		},
 		"class": {
 			"templates": ["base", "hasLevel"],
@@ -163,6 +160,7 @@
 		},
 		"heroic": {
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"],
+			"subtype": { "value": "skill" },
 			"requirement": { "value": "" },
 			"benefits": {
 				"hp": { "value": false },
@@ -174,22 +172,22 @@
 			"templates": ["base", "hasLevel", "hasClass", "rollInfo", "showTitleCard"]
 		},
 		"spell": {
-			"templates": ["base", "hasClass", "rollInfo", "hasBehavior"],
+			"templates": ["base", "hasClass", "rollInfo", "hasBehavior", "showTitleCard"],
 			"mpCost": { "value": "" },
 			"target": { "value": "" },
 			"duration": { "value": "" },
 			"isOffensive": { "value": false }
 		},
 		"miscAbility": {
-			"templates": ["base", "rollInfo", "showTitleCard", "hasBehavior"],
-			"subtype": { "value": "Custom" }
+			"templates": ["base", "equippable", "rollInfo", "hasBehavior", "showTitleCard"],
+			"subtype": { "value": "custom" }
 		},
 		"behavior": {
 			"templates": ["base"],
 			"isBehavior": true,
 			"weight": { "value": 1 }
 		},
-		"consumable": { "templates": ["base"], "ipCost": { "value": 3 } },
+		"consumable": { "templates": ["base", "showTitleCard"], "ipCost": { "value": 3 } },
 		"project": {
 			"templates": ["base"],
 			"potency": { "value": "minor" },
